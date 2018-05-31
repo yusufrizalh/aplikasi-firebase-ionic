@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
-import { User, AuthCredential } from '@firebase/auth-types';
+import { User } from '@firebase/auth-types';
 import { Reference } from '@firebase/database-types';
 
 @Injectable()

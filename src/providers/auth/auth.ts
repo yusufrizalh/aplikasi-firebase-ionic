@@ -8,12 +8,10 @@ export class AuthProvider {
   constructor() {
   }
 
-  // fungsi untuk login
   loginUser(email: string, password: string): Promise<User> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
-  // fungsi untuk signup
   signupUser(email: string, password: string): Promise<void> {
     return firebase
       .auth()
@@ -23,7 +21,6 @@ export class AuthProvider {
           .database()
           .ref(`/userProfile/${newUser.uid}/email`)
           .set(email);
-          console.log('data uid:', newUser.uid);
       })
       .catch(error => {
         console.error(error);
@@ -31,15 +28,14 @@ export class AuthProvider {
       });
   }
 
-  // fungsi reset password
   resetPassword(email: string): Promise<void> {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  // fungsi logout user
   logoutUser(): Promise<void> {
     const userId: string = firebase.auth().currentUser.uid;
-    firebase.database()
+    firebase
+      .database()
       .ref(`/userProfile/${userId}`)
       .off();
     return firebase.auth().signOut();

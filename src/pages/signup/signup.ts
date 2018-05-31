@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import {
-  Loading, LoadingController,
-  Alert, AlertController
+  Alert,
+  AlertController,
+  IonicPage,
+  Loading,
+  LoadingController,
+  NavController
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -14,51 +18,47 @@ import { HomePage } from '../home/home';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  // global variable
-  public loading: Loading;
   public signupForm: FormGroup;
+  public loading: Loading;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public authProvider: AuthProvider,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public formBuilder: FormBuilder) {
-
-      // validasi form
-      this.signupForm = formBuilder.group({
-        email: [
-          '',     // mendeteksi nilai string
-          Validators.compose([Validators.required])
-        ],
-        password: [
-          '',
-          Validators.compose([Validators.required, Validators.minLength(6)])
-        ]
-      });
+    formBuilder: FormBuilder) {
+    this.signupForm = formBuilder.group({
+      email: [
+        '',
+        Validators.compose([Validators.required])
+      ],
+      password: [
+        '',
+        Validators.compose([Validators.minLength(6), Validators.required])
+      ]
+    });
   }
 
-  // fungsi untuk proses signup user baru
   signupUser(): void {
-    // cek validasi form
-    if (!this.signupForm.valid){
-      console.log(`Form belum valid: ${this.signupForm.value}`);
+    if (!this.signupForm.valid) {
+      console.log(
+        `Form belum valid: ${this.signupForm.value}`
+      );
     } else {
       const email: string = this.signupForm.value.email;
       const password: string = this.signupForm.value.password;
 
-      // panggil fungsi signupUser dari provider Auth
       this.authProvider.signupUser(email, password).then(
-        user => {     // resolve
+        user => {
           this.loading.dismiss().then(() => {
             this.navCtrl.setRoot(HomePage);
           });
         },
-        error => {    // reject
+        error => {
           this.loading.dismiss().then(() => {
             const alert: Alert = this.alertCtrl.create({
               message: error.message,
-              buttons: [{ text: 'OK', role: 'cancel' }]
+              buttons: [{ text: 'Ok', role: 'cancel' }]
             });
             alert.present();
           });

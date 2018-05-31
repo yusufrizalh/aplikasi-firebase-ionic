@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { EventProvider } from '../providers/event/event';
-import { Camera } from '@ionic-native/camera';
+//import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { Camera } from '@ionic-native/camera';
     AuthProvider,
     ProfileProvider,
     EventProvider,
-    Camera
+    //Camera
   ]
 })
 export class AppModule {}
