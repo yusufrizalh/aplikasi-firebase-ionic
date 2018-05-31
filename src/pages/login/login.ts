@@ -38,7 +38,7 @@ export class LoginPage {
     });
   }
 
-  // fungsi untuk loginm user
+  // fungsi untuk login user
   loginUser(): void {
     // cek apakah form login sudah valid atau belum
     if (!this.loginForm.valid) {   // jika belum valid
@@ -70,6 +70,16 @@ export class LoginPage {
       this.loading = this.loadingCtrl.create();
       this.loading.present();
     }
+  }
+
+  // fungsi untuk membuka form signup
+  goToSignup(): void {
+    this.navCtrl.push('SignupPage');
+  }
+
+  // fungsi untuk membuka form reset password
+  goToResetPassword(): void {
+    this.navCtrl.push('ResetPasswordPage');
   }
 
   ionViewDidLoad() {

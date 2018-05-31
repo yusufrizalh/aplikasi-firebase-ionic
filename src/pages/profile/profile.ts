@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ProfileProvider } from '../../providers/profile/profile';
 
 @IonicPage()
 @Component({
@@ -8,10 +9,13 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  // global variable
+  public userProfile: any;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public authProvider: AuthProvider) {
+    public authProvider: AuthProvider,
+    public profileProvider: ProfileProvider) {
   }
 
   // fungsi untuk logout
@@ -23,6 +27,10 @@ export class ProfilePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
+    this.profileProvider.getUserProfile()
+      .on('value', userProfileSnapshot => {
+        this.userProfile = userProfileSnapshot.val();
+      });
   }
 
 }

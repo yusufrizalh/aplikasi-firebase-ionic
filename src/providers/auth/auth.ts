@@ -6,11 +6,10 @@ import { User } from '@firebase/auth-types';
 export class AuthProvider {
 
   constructor() {
-    console.log('Hello AuthProvider Provider');
   }
 
   // fungsi untuk login
-  loginUser(email: string, password: string): Promise<void> {
+  loginUser(email: string, password: string): Promise<User> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
@@ -19,13 +18,14 @@ export class AuthProvider {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(newUser => {  // resolve
+      .then(newUser => {
         firebase
           .database()
           .ref(`/userProfile/${newUser.uid}/email`)
           .set(email);
+          console.log('data uid:', newUser.uid);
       })
-      .catch(error => {   // catch
+      .catch(error => {
         console.error(error);
         throw new Error(error);
       });

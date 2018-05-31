@@ -1,9 +1,9 @@
 // menginisialisasi firebase
 export const firebaseConfig = {
-    apiKey: "AIzaSyBFdO769tH_WExNYs87KXiO7_XQuhnjtWk",
-    authDomain: "fir-apps-b3b76.firebaseapp.com",
-    databaseURL: "https://fir-apps-b3b76.firebaseio.com",
-    projectId: "fir-apps-b3b76",
-    storageBucket: "fir-apps-b3b76.appspot.com",
-    messagingSenderId: "424200310236"
+    apiKey: "AIzaSyCsF_86iTLrmbNc7hMU9CLScB_EBnBEISs",
+    authDomain: "ionic-firebase-ff145.firebaseapp.com",
+    databaseURL: "https://ionic-firebase-ff145.firebaseio.com",
+    projectId: "ionic-firebase-ff145",
+    storageBucket: "ionic-firebase-ff145.appspot.com",
+    messagingSenderId: "657373901412"
 };
